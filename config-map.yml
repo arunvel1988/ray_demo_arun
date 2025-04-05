@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ray-job-script
+data:
+  ray-script.py: |
+    import ray
+    ray.init()
+    print("Ray cluster resources:")
+    print(ray.cluster_resources())
