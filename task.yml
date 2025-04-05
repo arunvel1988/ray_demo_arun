@@ -13,12 +13,16 @@ spec:
     - name: configmap-key
       type: string
       description: Key in the ConfigMap where the Python script is stored.
+    - name: python-image
+      type: string
+      description: Docker image for running Python (default: python:3.9)
+      default: python:3.9
   resources:
     - name: python-script
       type: configmap
   steps:
     - name: submit-ray-job
-      image: python:3.9
+      image: "$(params.python-image)"
       script: |
         #!/bin/sh
         set -e
