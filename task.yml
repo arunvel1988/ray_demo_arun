@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1
 kind: Task
 metadata:
-  name: submit-ray-job-from-configmap
+  name: submit-ray-job-tekton
 spec:
   params:
     - name: ray-dashboard-url
