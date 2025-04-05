@@ -9,10 +9,12 @@ spec:
     - name: ray-dashboard-url
       value: http://raycluster-kuberay-head-svc.default.svc.cluster.local:8265
     - name: configmap-name
-      value: ray-job-script  # ConfigMap name
+      value: ray-job-script
     - name: configmap-key
-      value: ray-script.py  # Key in the ConfigMap
+      value: ray-script.py
+    - name: python-image
+      value: python:3.9  # You can specify a custom Python image here
   resources:
     - name: python-script
       resourceRef:
-        name: ray-job-script  # The ConfigMap name
+        name: ray-job-script
