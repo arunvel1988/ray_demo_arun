@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: submit-ray-job-from-configmap
+spec:
+  params:
+    - name: ray-dashboard-url
+      type: string
+      description: Ray dashboard address (e.g., http://<service>:8265)
+    - name: configmap-name
+      type: string
+      description: Name of the ConfigMap containing the Python script.
+    - name: configmap-key
+      type: string
+      description: Key in the ConfigMap where the Python script is stored.
+  resources:
+    - name: python-script
+      type: configmap
+  steps:
+    - name: submit-ray-job
+      image: python:3.9
+      script: |
+        #!/bin/sh
+        set -e
+        echo "Installing Ray..."
+        pip install -q "ray[default]"
+
+        # Directly use the Python script from the mounted ConfigMap
+        echo "Using Python script from ConfigMap $(params.configmap-name), key: $(params.configmap-key)..."
+        ray job submit --address $(params.ray-dashboard-url) -- python /mnt/configmap/$(params.configmap-name)/$(params.configmap-key)
