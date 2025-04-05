@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  name: submit-ray-job-from-configmap-run
+spec:
+  taskRef:
+    name: submit-ray-job-from-configmap
+  params:
+    - name: ray-dashboard-url
+      value: http://raycluster-kuberay-head-svc.default.svc.cluster.local:8265
+    - name: configmap-name
+      value: ray-job-script  # ConfigMap name
+    - name: configmap-key
+      value: ray-script.py  # Key in the ConfigMap
+  resources:
+    - name: python-script
+      resourceRef:
+        name: ray-job-script  # The ConfigMap name
