@@ -1,10 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: TaskRun
 metadata:
-  name: submit-ray-job-from-configmap-run
+  name: submit-ray-job-tekton-run
 spec:
   taskRef:
-    name: submit-ray-job-from-configmap
+    name: submit-ray-job-tekton
   params:
     - name: ray-dashboard-url
       value: http://raycluster-kuberay-head-svc.default.svc.cluster.local:8265
