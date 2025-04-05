@@ -133,11 +133,6 @@ Create a `TaskRun` that references the task and provides the necessary parameter
 
 This Tekton Task provides a flexible and secure way to submit Ray jobs to your Ray cluster using Python scripts stored in Kubernetes ConfigMaps. It allows you to specify the Ray dashboard, Python script, and Python image dynamically.
 
-For more information about Tekton Pipelines and configuring tasks, check out the official [Tekton documentation](https://tekton.dev/docs/).
-
----
-
-Let me know if you need any additional details or changes!
 
 
 
